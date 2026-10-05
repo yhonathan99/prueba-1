@@ -1,0 +1,25 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="thor_mod"
+version="1.0.0"
+displayName="Thor Mod"
+description='''
+Thor Mod: adds Mjolnir.
+'''
+
+[[dependencies.thor_mod]]
+    modId="neoforge"
+    type="required"
+    versionRange="[21.1.89,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.thor_mod]]
+    modId="minecraft"
+    type="required"
+    versionRange="[1.21.1]"
+    ordering="NONE"
+    side="BOTH"
