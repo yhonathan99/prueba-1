@@ -10,6 +10,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.network.syncher.SynchedEntityData.Builder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -121,6 +122,14 @@ public class MjolnirEntity extends Projectile {
    }
 
    protected void onHit(HitResult result) {
+      if (!this.level().isClientSide && !(Boolean)this.entityData.get(RETURNING)) {
+         LightningBolt bolt = EntityType.LIGHTNING_BOLT.create(this.level());
+         if (bolt != null) {
+            bolt.moveTo(result.getLocation());
+            this.level().addFreshEntity(bolt);
+         }
+      }
+
       super.onHit(result);
       this.startReturning();
    }
